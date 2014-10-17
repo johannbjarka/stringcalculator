@@ -1,6 +1,7 @@
 package is.ru.stringcalculator;
 
 import java.util.ArrayList;
+import  java.util.regex.Pattern;
 
 public class Calculator {
 
@@ -8,9 +9,11 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		/*else if(text.contains("-")){
-			throw new RuntimeException(("Negatives not allowed:" + ))
-		}*/
+		else if(text.startsWith("//[")){
+			String delimiter = text.substring(text.indexOf("[") + 1, text.indexOf("]"));
+			String numbers = text.substring(text.indexOf("]") + 2, text.length());
+			return sum(splitNumbers(numbers, delimiter));
+		}
 		else if(text.startsWith("//")){
 			char delim = text.charAt(2);
 			String delimiter = Character.toString(delim);
@@ -33,7 +36,7 @@ public class Calculator {
 	}
 	
 	private static String[] splitNumbers(String numbers, String delimiter){
-		return numbers.split(delimiter);
+		return numbers.split(Pattern.quote(delimiter));
 	}
       
     private static int sum(String[] numbers){
