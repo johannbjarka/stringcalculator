@@ -56,15 +56,9 @@ public class Calculator {
         	return total;
         }
         else{
-        	String negatives = "";
-        	for(Integer i: list){
-        		negatives = list.toString();
-        	}
+        	String negatives = list.toString();
         	String neg = negatives.substring(1, negatives.length() - 1);
         	throw new RuntimeException("Negatives not allowed: " + neg);
         }
     }
-
-
-
 }
