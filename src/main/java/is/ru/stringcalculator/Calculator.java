@@ -1,11 +1,16 @@
 package is.ru.stringcalculator;
 
+import java.util.ArrayList;
+
 public class Calculator {
 
 	public static int add(String text){
 		if(text.equals("")){
 			return 0;
 		}
+		/*else if(text.contains("-")){
+			throw new RuntimeException(("Negatives not allowed:" + ))
+		}*/
 		else if(text.startsWith("//")){
 			char delim = text.charAt(2);
 			String delimiter = Character.toString(delim);
@@ -33,10 +38,25 @@ public class Calculator {
       
     private static int sum(String[] numbers){
  	    int total = 0;
+ 	    ArrayList<Integer> list = new ArrayList<Integer>();
         for(String number : numbers){
-		    total += toInt(number);
+        	Integer num = toInt(number);
+        	if(num < 0){
+        		list.add(num);
+        	}
+		    total += num;
 		}
-		return total;
+        if(list.isEmpty()){
+        	return total;
+        }
+        else{
+        	String negatives = "";
+        	for(Integer i: list){
+        		negatives = list.toString();
+        	}
+        	String neg = negatives.substring(1, negatives.length() - 1);
+        	throw new RuntimeException("Negatives not allowed: " + neg);
+        }
     }
 
 
