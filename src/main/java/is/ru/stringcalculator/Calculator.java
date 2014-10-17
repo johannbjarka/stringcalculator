@@ -44,6 +44,9 @@ public class Calculator {
         	if(num < 0){
         		list.add(num);
         	}
+        	else if(num > 1000){
+        		continue; // so that the number isn't added to the total
+        	}
 		    total += num;
 		}
         if(list.isEmpty()){
