@@ -17,7 +17,6 @@ public class CalculatorTest {
 	@Test
 	public void testOneNumber() {
 		assertEquals(1, Calculator.add("1"));
-		assertEquals(2, Calculator.add("2"));
 	}
 
 	@Test
@@ -82,5 +81,10 @@ public class CalculatorTest {
 		}catch(RuntimeException e){
 			assertEquals("Illegal input", e.getMessage());
 		}
+	}
+	@Test
+	public void testDifferentSingleNumbers(){
+		assertEquals(2, Calculator.add("2"));
+		assertEquals(1000, Calculator.add("1000"));
 	}
 }
