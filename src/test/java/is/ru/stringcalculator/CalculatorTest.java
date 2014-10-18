@@ -74,4 +74,13 @@ public class CalculatorTest {
 	public void testSingleNumberLargerThan1000(){
 		assertEquals(0, Calculator.add("1001"));
 	}
+	@Test
+	public void testIllegalInputException(){
+		try{
+			Calculator.add(";1;2");
+			fail("Exception expected");
+		}catch(RuntimeException e){
+			assertEquals("Illegal input", e.getMessage());
+		}
+	}
 }

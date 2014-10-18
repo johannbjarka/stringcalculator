@@ -32,11 +32,14 @@ public class Calculator {
 		else if(text.contains(",") || text.contains ("\n")){
 			return sum(splitNumbers(text));
 		}
-		else{
+		else if(isInt(text)){
 			if(toInt(text) > 1000){
 				return 0;
 			}
 			return toInt(text);
+		}
+		else{
+			throw new RuntimeException("Illegal input");
 		}
 	}
 
@@ -73,5 +76,14 @@ public class Calculator {
         	negatives = negatives.substring(1, negatives.length() - 1);
         	throw new RuntimeException("Negatives not allowed: " + negatives);
         }
+    }
+    
+    private static boolean isInt(String str){
+    	try{
+    		toInt(str);
+    	}catch(NumberFormatException e){
+    		return false;
+    	}
+    	return true;
     }
 }
