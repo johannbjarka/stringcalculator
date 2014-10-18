@@ -70,4 +70,8 @@ public class CalculatorTest {
 		assertEquals(10, Calculator.add("//[***][%%][;;;;;]\n1***2%%3;;;;;4"));
 		assertEquals(15, Calculator.add("//[..][,,,][#][!!!!]\n1..2,,,3#4!!!!5"));
 	}
+	@Test
+	public void testSingleNumberLargerThan1000(){
+		assertEquals(0, Calculator.add("1001"));
+	}
 }

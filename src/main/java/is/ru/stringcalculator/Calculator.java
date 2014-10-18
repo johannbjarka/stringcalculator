@@ -1,7 +1,6 @@
 package is.ru.stringcalculator;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 import  java.util.regex.Pattern;
 
 public class Calculator {
@@ -33,8 +32,12 @@ public class Calculator {
 		else if(text.contains(",") || text.contains ("\n")){
 			return sum(splitNumbers(text));
 		}
-		else
+		else{
+			if(toInt(text) > 1000){
+				return 0;
+			}
 			return toInt(text);
+		}
 	}
 
 	private static int toInt(String number){
