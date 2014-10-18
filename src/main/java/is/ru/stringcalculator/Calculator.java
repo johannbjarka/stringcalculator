@@ -1,6 +1,7 @@
 package is.ru.stringcalculator;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 import  java.util.regex.Pattern;
 
 public class Calculator {
@@ -10,8 +11,17 @@ public class Calculator {
 			return 0;
 		}
 		else if(text.startsWith("//[")){
-			String delimiter = text.substring(text.indexOf("[") + 1, text.indexOf("]"));
-			String numbers = text.substring(text.indexOf("]") + 2, text.length());
+			String delim = text.substring(text.indexOf("[") + 1, text.lastIndexOf("]"));
+			delim = delim.replace("[", "");
+			String[] delimarr = delim.split("]");
+			StringBuilder builder = new StringBuilder();
+			for(String s : delimarr) {
+			    builder.append(Pattern.quote(s));
+			    builder.append("|");
+			}
+			String delimiter = builder.toString();
+			delimiter = delimiter.substring(0, delimiter.length() - 1);
+			String numbers = text.substring(text.indexOf("\n") + 1, text.length());
 			return sum(splitNumbers(numbers, delimiter));
 		}
 		else if(text.startsWith("//")){
@@ -36,7 +46,7 @@ public class Calculator {
 	}
 	
 	private static String[] splitNumbers(String numbers, String delimiter){
-		return numbers.split(Pattern.quote(delimiter));
+		return numbers.split(delimiter);
 	}
       
     private static int sum(String[] numbers){
@@ -57,8 +67,8 @@ public class Calculator {
         }
         else{
         	String negatives = list.toString();
-        	String neg = negatives.substring(1, negatives.length() - 1);
-        	throw new RuntimeException("Negatives not allowed: " + neg);
+        	negatives = negatives.substring(1, negatives.length() - 1);
+        	throw new RuntimeException("Negatives not allowed: " + negatives);
         }
     }
 }
