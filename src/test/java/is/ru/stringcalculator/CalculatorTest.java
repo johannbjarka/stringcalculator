@@ -35,6 +35,7 @@ public class CalculatorTest {
 	@Test
 	public void testHandleDifferentDelimiter(){
 		assertEquals(3, Calculator.add("//;\n1;2"));
+		assertEquals(6, Calculator.add("//*\n1*2*3"));
 	}
 	@Test
 	public void testNegativeNumbersException(){

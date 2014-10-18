@@ -28,7 +28,7 @@ public class Calculator {
 			char delim = text.charAt(2);
 			String delimiter = Character.toString(delim);
 			String numbers = text.substring(4);
-			return sum(splitNumbers(numbers, delimiter));
+			return sum(splitNumbers(numbers, Pattern.quote(delimiter)));
 		}
 		else if(text.contains(",") || text.contains ("\n")){
 			return sum(splitNumbers(text));
